@@ -1,0 +1,68 @@
+
+[pP]arola <- si usa quando ci può essere sia una che l'altra lettera { Parola | parola }
+
+[123456789] <- ci può essere qualsiasi numero
+
+------------ RANGE - --------------------------
+
+[A-Z] <- una lettera maiuscola
+
+[a-z] <- una lettera minuscola
+
+[0-9] <- una cifra
+
+----------- NEGAZIONE ^ ------------------------
+
+[^A-Z] <- Non una lettera maiuscola
+
+[^Ss] <- no 'S' o 's' 
+
+[^e^] <- no 'e' o '^'
+
+---------- DISGIUNZIONE | --------------------- una o l'altra parola
+
+Cane|Doggo <- il cane si può chiamare "Cane" o "Doggo"
+
+[Cc]ane|[Dd]oggo <- qua può uscire "cane", "Cane", "doggo" o "Doggo"
+
+-------------- ? ------------------------------- carattere opzionale
+
+s?cancellare <- cattura sia "cancellare" che "scancellare"
+
+obb?iettivo <- cattura sia "obbiettivo" che "obiettivo"
+
+------------- * -------------------------------- 0 o + caratteri del precedente
+
+oo*h <- cattura "oh", "ooh", "oooh" etc.
+
+------------- + -------------------------------- 1 o + caratteri del precedente
+
+oo+h <- cattura "ooh", "oooh", "ooooh" etc ma non "oh"
+
+------------- . --------------------------------- Jolly, qualsiasi lettera
+
+Ettor. <- cattura "Ettore", "Ettora", "Ettori", "Ettor5" etc
+
+------------- \ ---------------------------------- Caratteri Speciali
+
+Alias
+\d qualsiasi cifra
+\D non una cifra
+\w qualsiasi carattere alfanumerico e underscore
+\W non un carattere alfanumerico
+\s spazio bianco anche tab
+\S non uno spaziobianco 
+
+-------------------------------------------------------------------------
+                        CATTURARE GRUPPI
+come leggere?
+s/regexp/pattern/ -> predi la regexp e la trasformi in pattern
+
+CATTURARE GRUPPI 
+ES vogliamo prendere una frase e mettere delle parentesi attorno ai numeri "voglio 50mila euro"->"voglio <50>mila euro"
+usiamo \1 per riferirci al contenuto del registro \2 per il secondo etc
+s/([0-9]+)/</1>/ 
+                        NON CATTURARE GRUPPI
+Si usa il costrutto (?:"prima parola"| "seconda parola")   per esempio
+/A (?:poch[ei]|alcun[ei]) (persone|gatti) piaccioni i \1/
+cattura "A alcune persone piacciono i gatti" ma no "A alcune persone piacciono i tutti"ù
